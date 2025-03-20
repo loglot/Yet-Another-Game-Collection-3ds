@@ -45,6 +45,7 @@ char keysNames[32][32] = {
 	"KEY_CSTICK_RIGHT", "KEY_CSTICK_LEFT", "KEY_CSTICK_UP", "KEY_CSTICK_DOWN",
 	"KEY_CPAD_RIGHT", "KEY_CPAD_LEFT", "KEY_CPAD_UP", "KEY_CPAD_DOWN"
 };
+int enemies[10][3]={{120,3,0},{12,1,2},{33,2,2},{85,2,2},{110,5,2},{203,4,2},{10,4,2},{0,0,2},{0,0,2},{0,0,2}};
 
 
 void drawTop(){
@@ -69,6 +70,11 @@ void drawTop(){
 		YAOL);
 	C2D_DrawCircleSolid(x, y, 0, 25, 
 		YAGreen);
+
+	for(int i = 0; i<10;i++){
+		C2D_DrawRectSolid(enemies[i][0]*50, enemies[i][1],0, 50, 25, YAOL);
+
+	}
 	C3D_FrameEnd(0);
 	
 }
