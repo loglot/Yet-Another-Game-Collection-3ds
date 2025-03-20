@@ -26,8 +26,8 @@ int main(int argc, char* argv[]) {
 	u32 YAGreen   = C2D_Color32(0xAF, 0xBF, 0xAF, 0xFF);
 	u32 YAOL   = C2D_Color32(0x33, 0x36, 0x3F, 0xFF);
 	u32 YABlue  = C2D_Color32(0xA7, 0xC7, 0xD8, 0xFF);//#a7c7d8
-    float x=0;
-    float y=0;
+    float x=200;
+    float y=30;
     float velx=0;
     float vely=0;
     char keysNames[32][32] = {
@@ -41,6 +41,7 @@ int main(int argc, char* argv[]) {
 		"KEY_CPAD_RIGHT", "KEY_CPAD_LEFT", "KEY_CPAD_UP", "KEY_CPAD_DOWN"
 	};
 
+
 u32 kDownOld = 0, kHeldOld = 0, kUpOld = 0;
 	// Main loop
 	while (aptMainLoop())
@@ -51,7 +52,7 @@ u32 kDownOld = 0, kHeldOld = 0, kUpOld = 0;
 		u32 kDown = hidKeysDown();
 		if (kDown & KEY_START)
 			break; // break in order to return to hbmenu
-		printf("\x1b[1;1HSimple citro2d shapes example");
+		printf("\x1b[1;1HYAFG REMASTERED 3DS EDITION");
 		printf("\x1b[2;1HCPU:     %6.2f%%\x1b[K", C3D_GetProcessingTime()*6.0f);
 		printf("\x1b[3;1HGPU:     %6.2f%%\x1b[K", C3D_GetDrawingTime()*6.0f);
 		printf("\x1b[4;1HCmdBuf:  %6.2f%%\x1b[K", C3D_GetCmdBufUsage()*100.0f);
@@ -61,25 +62,33 @@ u32 kDownOld = 0, kHeldOld = 0, kUpOld = 0;
 		C2D_SceneBegin(top);
 		C2D_TargetClear(top, YABlue);
         u32 kHeld = hidKeysHeld();
-		if (kHeld & KEY_A){
-            x=x+1;
-        }
-		if (kHeld & KEY_Y){
-            x=x-1;
-        }
-		if (kHeld & KEY_X){
-            y=y-1;
-        }
-		if (kHeld & KEY_B){
-            y=y+1;
-        }
-        
+		// if (kHeld & KEY_A){
+        //     x=x+1;
+        // }
+		// if (kHeld & KEY_Y){
+        //     x=x-1;
+        // }
+		// if (kHeld & KEY_X){
+        //     y=y-1;
+        // }
+		// if (kHeld & KEY_B){
+        //     y=y+1;
+        // }
+        if (kDown & KEY_A){
+             vely=vely-20;
+         }
+        if (kDown & BIT(6)){
+             velx=velx-20;
+         }
+        if (kDown & BIT(5)){
+             velx=velx+20;
+         }
 		circlePosition pos;
 		hidCircleRead(&pos);
-        velx=velx+pos.dx/100;
-        vely=vely-pos.dy/100;
+        // velx=velx+pos.dx/100;
+        // vely=vely-pos.dy/100;
         velx=velx/1.1;
-        vely=vely/1.1;
+        vely=(vely+.1)/1.1;
         x=x+velx;
         y=y+vely;
 
