@@ -51,8 +51,8 @@ void drawTop(){
 	C3D_FrameBegin(C3D_FRAME_SYNCDRAW);
 	C2D_SceneBegin(top);
 	C2D_TargetClear(top, YABlue);
-	C2D_DrawRectSolid(195, 0, 10, 240,0, 
-		YAOL);
+	// C2D_DrawRectSolid(195, 0, 10, 240,0, 
+	// 	YAOL);
 	C2D_DrawCircleSolid(x, y, 0, 30, 
 		YAOL);
 	C2D_DrawCircleSolid(x, y, 0, 25, 
