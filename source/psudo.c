@@ -68,7 +68,7 @@ void drawBottom(){
 		YAOL);
 	C2D_DrawCircleSolid(x, y-240, 0, 25, 
 		YAGreen);
-	printf("\x1b[1;1HYAFG REMASTERED 3DS EDITION");
+	// printf("\x1b[1;1HYAFG REMASTERED 3DS EDITION");
 	C3D_FrameEnd(0);
 	
 }
