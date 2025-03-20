@@ -59,11 +59,9 @@ void drawTop(){
 		YAOL);
 	C2D_DrawRectSolid(15, 0,0, 10, 240, 
 		YAOL);
-	C2D_DrawRectSolid(395, 0,0, 10, 240, 
+	C2D_DrawRectSolid(285, 0,0, 10, 240, 
 		YAOL);
-	C2D_DrawRectSolid(305, 0,0, 10, 240, 
-		YAOL);
-	C2D_DrawRectSolid(215, 0,0, 10, 240, 
+	C2D_DrawRectSolid(375, 0,0, 10, 240, 
 		YAOL);
 
 	C2D_DrawCircleSolid(x, y, 0, 30, 
