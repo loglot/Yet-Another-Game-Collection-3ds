@@ -28,6 +28,8 @@ int main(int argc, char* argv[]) {
 	u32 YABlue  = C2D_Color32(0xA7, 0xC7, 0xD8, 0xFF);//#a7c7d8
     float x=0;
     float y=0;
+    float velx=0;
+    float vely=0;
     char keysNames[32][32] = {
 		"KEY_A", "KEY_B", "KEY_SELECT", "KEY_START",
 		"KEY_DRIGHT", "KEY_DLEFT", "KEY_DUP", "KEY_DDOWN",
@@ -74,8 +76,12 @@ u32 kDownOld = 0, kHeldOld = 0, kUpOld = 0;
         
 		circlePosition pos;
 		hidCircleRead(&pos);
-        x=x+pos.dx/20;
-        y=y-pos.dy/20;
+        velx=velx+pos.dx/100;
+        vely=vely-pos.dy/100;
+        velx=velx/1.1;
+        vely=vely/1.1;
+        x=x+velx;
+        y=y+vely;
 
 		C2D_DrawCircleSolid(x, y, 0, 30, 
 			YAOL);
