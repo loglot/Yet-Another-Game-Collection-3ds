@@ -1,6 +1,8 @@
 #---------------------------------------------------------------------------------
 .SUFFIXES:
 #---------------------------------------------------------------------------------
+export DEVKITARM=/opt/devkitpro/devkitARM
+export DEVKITPRO=/opt/devkitpro
 
 ifeq ($(strip $(DEVKITARM)),)
 $(error "Please set DEVKITARM in your environment. export DEVKITARM=<path to>devkitARM")
