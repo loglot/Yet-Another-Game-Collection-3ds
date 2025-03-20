@@ -70,7 +70,7 @@ void drawTop(){
 		YAGreen);
 
 	for(int i = 0; i<10;i++){
-		C2D_DrawRectSolid(enemies[i][0]*50, enemies[i][1],0, 50, 25, YAOL);
+		C2D_DrawRectSolid(enemies[i][0]*50, -enemies[i][1],0, 50, 25, YAOL);
 
 	}
 	C3D_FrameEnd(0);
