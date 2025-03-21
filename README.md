@@ -21,7 +21,7 @@ that's right, i'm getting into 3ds homebrew
 
         2.2. download the source code localy
 
-        2.3. run build in the main folder
+        2.3. run `make` in the main folder
 
 3. open the game
 
