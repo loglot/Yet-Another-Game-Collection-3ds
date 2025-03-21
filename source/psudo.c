@@ -39,8 +39,8 @@ int main(int argc, char* argv[]) {
 	}
 
 	// // Deinit libs
-	// C2D_Fini();
-	// C3D_Fini();
-	// gfxExit();
-	// return 0;
+	C2D_Fini();
+	C3D_Fini();
+	gfxExit();
+	return 0;
 }

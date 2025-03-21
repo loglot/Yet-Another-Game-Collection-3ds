@@ -108,54 +108,55 @@ u32 YABlue  = C2D_Color32(0xA7, 0xC7, 0xD8, 0xFF);
         
     }
 
-void tick(){
+    void tick(){
 
-	hidScanInput();
+        hidScanInput();
 
-	// Respond to user input
-	u32 kDown = hidKeysDown();
-	
-	u32 kHeld = hidKeysHeld();
-	// if (kHeld & KEY_A){
-	// 	x=x+10;
-	// }
-	// if (kHeld & KEY_Y){
-	// 	x=x-10;
-	// }
-	// if (kHeld & KEY_X){
-	// 	y=y-10;
-	// }
-	// if (kHeld & KEY_B){
-	// 	y=y+10;
-	// }
-	// if (kDown & KEY_A){
-	//      vely=vely-20;
-	//  }
-	if (kDown & KEY_A){
-		vely=vely-30;
-	}
-	if (kDown & BIT(4)){
-		 velx=velx+10;
-	 }
-	if (kDown & BIT(5)){
-		 velx=velx-10;
-	 }
-	 velx*=.9;
-	 vely+=2;
-	 vely*=.9;
-	 x+=velx;
-	 y+=vely;
+        // Respond to user input
+        u32 kDown = hidKeysDown();
+        
+        // u32 kHeld = hidKeysHeld();
+        // if (kHeld & KEY_A){
+        // 	x=x+10;
+        // }
+        // if (kHeld & KEY_Y){
+        // 	x=x-10;
+        // }
+        // if (kHeld & KEY_X){
+        // 	y=y-10;
+        // }
+        // if (kHeld & KEY_B){
+        // 	y=y+10;
+        // }
+        // if (kDown & KEY_A){
+        //      vely=vely-20;
+        //  }
+        if (kDown & KEY_A){
+            vely=vely-30;
+        }
+        if (kDown & BIT(4)){
+            velx=velx+10;
+        }
+        if (kDown & BIT(5)){
+            velx=velx-10;
+        }
+        velx*=.9;
+        vely+=2;
+        vely*=.9;
+        x+=velx;
+        y+=vely;
 
-	display();
-	
-}
+        display();
+        
+    }
 
+init();
 while (aptMainLoop())
 {
     u32 kDown = hidKeysDown();
     if (kDown & KEY_START)
         break;
-        tick();
+    tick();
 }
 
 // Deinit libs
