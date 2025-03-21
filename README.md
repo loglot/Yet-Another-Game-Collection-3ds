@@ -28,3 +28,8 @@ that's right, i'm getting into 3ds homebrew
     3.1. on a 3ds, you should put the .3dsx file onto the sd card, and open it with homebrew launcher
 
     3.2. on an emulator, you can just open the file like any other game
+
+## planned features
+i plan to make multiple of my games in this, not just 1,
+
+there is a .cia version planned, i just have to learn how to do that, and that will be in the first stable release
