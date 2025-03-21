@@ -1,4 +1,4 @@
-# Yet Another Flappy Game 3ds Edition
+# Yet Another Game Collection 3ds
 
 that's right, i'm getting into 3ds homebrew
 
@@ -33,3 +33,15 @@ that's right, i'm getting into 3ds homebrew
 i plan to make multiple of my games in this, not just 1,
 
 there is a .cia version planned, i just have to learn how to do that, and that will be in the first stable release
+
+[Yet Another Collectathon] : not yet
+
+[Yet Another Flappy Game] : in development
+
+[Yet Another Bouncer] : not yet
+
+[Yet Another Idle Game] : not sure
+
+[Yet Another Twin Stick Shooter] : not sure
+
+[Yet Another 2d Platformer] : absolutly not
