@@ -45,7 +45,18 @@ char keysNames[32][32] = {
 	"KEY_CSTICK_RIGHT", "KEY_CSTICK_LEFT", "KEY_CSTICK_UP", "KEY_CSTICK_DOWN",
 	"KEY_CPAD_RIGHT", "KEY_CPAD_LEFT", "KEY_CPAD_UP", "KEY_CPAD_DOWN"
 };
-float enemies[10][3]={{300,2,.5},{12,0,2},{33,1,2},{85,1,2},{110,4,2},{203,3,2},{10,3,2},{0,0,2},{0,0,2},{0,0,2}};
+srand(1);
+float enemies[10][3]={
+	{300,2,.5},
+	{-rand()%600,rand()%5,.5+(rand()%20)/5},
+	{-rand()%600,rand()%5,.5+(rand()%20)/5},
+	{-rand()%600,rand()%5,.5+(rand()%20)/5},
+	{-rand()%600,rand()%5,.5+(rand()%20)/5},
+	{-rand()%600,rand()%5,.5+(rand()%20)/5},
+	{-rand()%600,rand()%5,.5+(rand()%20)/5},
+	{-rand()%600,rand()%5,.5+(rand()%20)/5},
+	{-rand()%600,rand()%5,.5+(rand()%20)/5},
+	{-rand()%600,rand()%5,.5+(rand()%20)/5}};
 
 
 void drawTop(){
@@ -70,7 +81,15 @@ void drawTop(){
 		YAGreen);
 
 	for(int i = 0; i<10;i++){
+		
+		enemies[i][0]+=enemies[i][2];
 		C2D_DrawRectSolid(enemies[i][1]*90-25, enemies[i][0],0, 90, 35, YAOL);
+
+		if((x)<enemies[i][1]*90-25+90&&(x)>enemies[i][1]*90-25&&(y+30)>enemies[i][0]&&(y+30)<enemies[i][0]+35) vely+=-30;
+		if((x)<enemies[i][1]*90-25+90&&(x)>enemies[i][1]*90-25&&(y-30)>enemies[i][0]&&(y-30)<enemies[i][0]+35) vely+=10;
+		if((x-30)<enemies[i][1]*90-25+90&&(x-30)>enemies[i][1]*90-25&&(y)>enemies[i][0]&&(y)<enemies[i][0]+35) velx+=10;
+		if((x+30)<enemies[i][1]*90-25+90&&(x+30)>enemies[i][1]*90-25&&(y)>enemies[i][0]&&(y)<enemies[i][0]+35) velx+=-10;
+		if(enemies[i][0]>500) enemies[i][0]=-50 ;
 
 	}
 	C3D_FrameEnd(0);
@@ -95,7 +114,7 @@ void drawBottom(){
 		YAGreen);
 		
 	for(int i = 0; i<10;i++){
-		enemies[i][0]+=enemies[i][2];
+
 		C2D_DrawRectSolid(enemies[i][1]*90-25-40, enemies[i][0]-240,0, 90, 35, YAOL);
 
 	}
@@ -135,7 +154,7 @@ void tick(){
 	//      vely=vely-20;
 	//  }
 	if (kDown & KEY_A){
-		vely=vely-20;
+		vely=vely-30;
 	}
 	if (kDown & BIT(4)){
 		 velx=velx+10;
@@ -144,7 +163,7 @@ void tick(){
 		 velx=velx-10;
 	 }
 	 velx*=.9;
-	 vely+=1.3;
+	 vely+=2;
 	 vely*=.9;
 	 x+=velx;
 	 y+=vely;
