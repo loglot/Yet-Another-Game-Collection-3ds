@@ -148,13 +148,20 @@ void tick(){
 
 	display();
 	
-	while (aptMainLoop())
-	{
-		u32 kDown = hidKeysDown();
-		if (kDown & KEY_START)
-			break;
-		    tick();
-	}
 }
+
+while (aptMainLoop())
+{
+    u32 kDown = hidKeysDown();
+    if (kDown & KEY_START)
+        break;
+        tick();
+}
+
+// Deinit libs
+C2D_Fini();
+C3D_Fini();
+gfxExit();
+return 0;
 }
 //---------------------------------------------------------------------------------
