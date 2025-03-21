@@ -9,19 +9,19 @@ that's right, i'm getting into 3ds homebrew
 
 2. download the game
 
-you can download the game from 2 places
+    you can download the game from 2 places
 
-    indev: https://github.com/loglot/3ds-game/raw/refs/heads/main/3ds-game.3dsx
+        indev: https://github.com/loglot/3ds-game/raw/refs/heads/main/3ds-game.3dsx
 
-    stable: [no stable release]
+        stable: [no stable release]
 
-or, if you don't trust precompiled binaries, you can build it yourself!
+    or, if you don't trust precompiled binaries, you can build it yourself!
 
-    2.1. get [devkitpro](https://devkitpro.org/)
+        2.1. get [devkitpro](https://devkitpro.org/)
 
-    2.2. download the source code localy
+        2.2. download the source code localy
 
-    2.3. run build in the main folder
+        2.3. run build in the main folder
 
 3. open the game
 
