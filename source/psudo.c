@@ -21,7 +21,7 @@ gfxInitDefault();
 C3D_Init(C3D_DEFAULT_CMDBUF_SIZE);
 C2D_Init(C2D_DEFAULT_MAX_OBJECTS);
 C2D_Prepare();
-consoleInit(GFX_BOTTOM, NULL);
+// consoleInit(GFX_BOTTOM, NULL);
 
 // Create screens
 C3D_RenderTarget* top = C2D_CreateScreenTarget(GFX_TOP, GFX_LEFT);
@@ -45,7 +45,7 @@ char keysNames[32][32] = {
 	"KEY_CSTICK_RIGHT", "KEY_CSTICK_LEFT", "KEY_CSTICK_UP", "KEY_CSTICK_DOWN",
 	"KEY_CPAD_RIGHT", "KEY_CPAD_LEFT", "KEY_CPAD_UP", "KEY_CPAD_DOWN"
 };
-int enemies[10][3]={{120,3,0},{12,1,2},{33,2,2},{85,2,2},{110,5,2},{203,4,2},{10,4,2},{0,0,2},{0,0,2},{0,0,2}};
+float enemies[10][3]={{300,2,.5},{12,0,2},{33,1,2},{85,1,2},{110,4,2},{203,3,2},{10,3,2},{0,0,2},{0,0,2},{0,0,2}};
 
 
 void drawTop(){
@@ -57,9 +57,9 @@ void drawTop(){
 		YAOL);
 	C2D_DrawRectSolid(105, 0,0, 10, 240, 
 		YAOL);
-	C2D_DrawRectSolid(15, 0,0, 10, 240, 
-		YAOL);
 	C2D_DrawRectSolid(285, 0,0, 10, 240, 
+		YAOL);
+	C2D_DrawRectSolid(15, 0,0, 10, 240, 
 		YAOL);
 	C2D_DrawRectSolid(375, 0,0, 10, 240, 
 		YAOL);
@@ -70,7 +70,7 @@ void drawTop(){
 		YAGreen);
 
 	for(int i = 0; i<10;i++){
-		C2D_DrawRectSolid(enemies[i][0]*50, -enemies[i][1],0, 50, 25, YAOL);
+		C2D_DrawRectSolid(enemies[i][1]*90-25, enemies[i][0],0, 90, 35, YAOL);
 
 	}
 	C3D_FrameEnd(0);
@@ -80,10 +80,25 @@ void drawBottom(){
 	C3D_FrameBegin(C3D_FRAME_SYNCDRAW);
 	C2D_SceneBegin(bottom);
 	C2D_TargetClear(bottom, YABlue);
-	C2D_DrawCircleSolid(x, y-240, 0, 30, 
+
+	C2D_DrawRectSolid(195-40, 0,0, 10, 240, 
 		YAOL);
-	C2D_DrawCircleSolid(x, y-240, 0, 25, 
+	C2D_DrawRectSolid(105-40, 0,0, 10, 240, 
+		YAOL);
+	C2D_DrawRectSolid(285-40, 0,0, 10, 240, 
+		YAOL);
+
+
+	C2D_DrawCircleSolid(x-40, y-240, 0, 30, 
+		YAOL);
+	C2D_DrawCircleSolid(x-40, y-240, 0, 25, 
 		YAGreen);
+		
+	for(int i = 0; i<10;i++){
+		enemies[i][0]+=enemies[i][2];
+		C2D_DrawRectSolid(enemies[i][1]*90-25-40, enemies[i][0]-240,0, 90, 35, YAOL);
+
+	}
 	// printf("\x1b[1;1HYAFG REMASTERED 3DS EDITION");
 	C3D_FrameEnd(0);
 	
@@ -104,27 +119,35 @@ void tick(){
 	u32 kDown = hidKeysDown();
 	
 	u32 kHeld = hidKeysHeld();
-	if (kHeld & KEY_A){
-		x=x+10;
-	}
-	if (kHeld & KEY_Y){
-		x=x-10;
-	}
-	if (kHeld & KEY_X){
-		y=y-10;
-	}
-	if (kHeld & KEY_B){
-		y=y+10;
-	}
+	// if (kHeld & KEY_A){
+	// 	x=x+10;
+	// }
+	// if (kHeld & KEY_Y){
+	// 	x=x-10;
+	// }
+	// if (kHeld & KEY_X){
+	// 	y=y-10;
+	// }
+	// if (kHeld & KEY_B){
+	// 	y=y+10;
+	// }
 	// if (kDown & KEY_A){
 	//      vely=vely-20;
 	//  }
-	if (kDown & BIT(6)){
-		 velx=velx-20;
+	if (kDown & KEY_A){
+		vely=vely-20;
+	}
+	if (kDown & BIT(4)){
+		 velx=velx+10;
 	 }
 	if (kDown & BIT(5)){
-		 velx=velx+20;
+		 velx=velx-10;
 	 }
+	 velx*=.9;
+	 vely+=1.3;
+	 vely*=.9;
+	 x+=velx;
+	 y+=vely;
 
 	display();
 	
