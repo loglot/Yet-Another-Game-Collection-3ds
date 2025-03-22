@@ -75,26 +75,27 @@ u32 YABlue  = C2D_Color32(0xA7, 0xC7, 0xD8, 0xFF);
         
     }
     void drawBottom(){
+        int offset[2]={-40,-240};
         C3D_FrameBegin(C3D_FRAME_SYNCDRAW);
         C2D_SceneBegin(bottom);
         C2D_TargetClear(bottom, YABlue);
     
-        C2D_DrawRectSolid(195-40, 0,0, 10, 240, 
+        C2D_DrawRectSolid(195+offset[0], 0,0, 10, 240, 
             YAOL);
-        C2D_DrawRectSolid(105-40, 0,0, 10, 240, 
+        C2D_DrawRectSolid(105+offset[0], 0,0, 10, 240, 
             YAOL);
-        C2D_DrawRectSolid(285-40, 0,0, 10, 240, 
+        C2D_DrawRectSolid(285+offset[0], 0,0, 10, 240, 
             YAOL);
     
     
-        C2D_DrawCircleSolid(YAFGx-40, YAFGy-240, 0, 30, 
+        C2D_DrawCircleSolid(YAFGx+offset[0], YAFGy+offset[1], 0, 30, 
             YAOL);
-        C2D_DrawCircleSolid(YAFGx-40, YAFGy-240, 0, 25, 
+        C2D_DrawCircleSolid(YAFGx+offset[0], YAFGy+offset[1], 0, 25, 
             YAGreen);
             
         for(int i = 0; i<10;i++){
     
-            C2D_DrawRectSolid(YAFGenemies[i][1]*90-25-40, YAFGenemies[i][0]-240,0, 90, 35, YAOL);
+            C2D_DrawRectSolid(YAFGenemies[i][1]*90-25+offset[0], YAFGenemies[i][0]+offset[1],0, 90, 35, YAOL);
     
         }
         // printf("\x1b[1;1HYAFG REMASTERED 3DS EDITION");

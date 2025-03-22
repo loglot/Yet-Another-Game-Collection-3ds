@@ -51,15 +51,15 @@ C3D_RenderTarget* bottom = C2D_CreateScreenTarget(GFX_BOTTOM, GFX_LEFT);
 	int time=0;
 while (aptMainLoop())
 {
+    hidScanInput();
     u32 kDown = hidKeysDown();
     if (kDown & KEY_START)
         break;
 	if (kDown & KEY_A) 
 		YAFG();
 
-    thistick();
+    // thistick();
 	time++;
-	consoleClear();
 	printf("\x1b[1;1HPress A to Start YAFG  ");
 	printf("\x1b[2;1HCPU:     %6.2f%%\x1b[K", C3D_GetProcessingTime()*6.0f);
 }
