@@ -11,7 +11,7 @@ that's right, i'm getting into 3ds homebrew
 
     you can download the game from 2 places
 
-        indev: https://github.com/loglot/3ds-game/raw/refs/heads/main/3ds-game.3dsx
+        indev NOTE: this version is unstable, and at any point, it can crash your 3ds if downloaded at the wrong time, i would reccomend downloading from latest release: https://github.com/loglot/3ds-game/raw/refs/heads/main/3ds-game.3dsx
 
         stable: [no stable release]
 

@@ -18,10 +18,10 @@ C3D_RenderTarget* bottom = C2D_CreateScreenTarget(GFX_BOTTOM, GFX_LEFT);
 u32 YAGreen   = C2D_Color32(0xAF, 0xBF, 0xAF, 0xFF);
 u32 YAOL   = C2D_Color32(0x33, 0x36, 0x3F, 0xFF);
 u32 YABlue  = C2D_Color32(0xA7, 0xC7, 0xD8, 0xFF);
-    float x=200;
-    float y=30;
-    float velx=0;
-    float vely=0;
+    float gamex=200;
+    float gamey=30;
+    float gamevelx=0;
+    float gamevely=0;
 
     
     

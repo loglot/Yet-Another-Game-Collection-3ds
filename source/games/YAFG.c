@@ -18,13 +18,13 @@ C3D_RenderTarget* bottom = C2D_CreateScreenTarget(GFX_BOTTOM, GFX_LEFT);
 u32 YAGreen   = C2D_Color32(0xAF, 0xBF, 0xAF, 0xFF);
 u32 YAOL   = C2D_Color32(0x33, 0x36, 0x3F, 0xFF);
 u32 YABlue  = C2D_Color32(0xA7, 0xC7, 0xD8, 0xFF);
-    float x=200;
-    float y=30;
-    float velx=0;
-    float vely=0;
+    float YAFGx=200;
+    float YAFGy=30;
+    float YAFGvelx=0;
+    float YAFGvely=0;
 
     srand(1);
-    float enemies[10][3]={
+    float YAFGenemies[10][3]={
         {300,2,.5},
         {-rand()%600,rand()%5,.5+(rand()%20)/5},
         {-rand()%600,rand()%5,.5+(rand()%20)/5},
@@ -53,21 +53,22 @@ u32 YABlue  = C2D_Color32(0xA7, 0xC7, 0xD8, 0xFF);
         C2D_DrawRectSolid(375, 0,0, 10, 240, 
             YAOL);
     
-        C2D_DrawCircleSolid(x, y, 0, 30, 
+        C2D_DrawCircleSolid(YAFGx, YAFGy, 0, 30, 
             YAOL);
-        C2D_DrawCircleSolid(x, y, 0, 25, 
+        C2D_DrawCircleSolid(YAFGx, YAFGy, 0, 25, 
             YAGreen);
-    
+        bool hit = false;
         for(int i = 0; i<10;i++){
             
-            enemies[i][0]+=enemies[i][2];
-            C2D_DrawRectSolid(enemies[i][1]*90-25, enemies[i][0],0, 90, 35, YAOL);
-    
-            if((x)<enemies[i][1]*90-25+90&&(x)>enemies[i][1]*90-25&&(y+30)>enemies[i][0]&&(y+30)<enemies[i][0]+35) vely+=-30;
-            if((x)<enemies[i][1]*90-25+90&&(x)>enemies[i][1]*90-25&&(y-30)>enemies[i][0]&&(y-30)<enemies[i][0]+35) vely+=10;
-            if((x-30)<enemies[i][1]*90-25+90&&(x-30)>enemies[i][1]*90-25&&(y)>enemies[i][0]&&(y)<enemies[i][0]+35) velx+=10;
-            if((x+30)<enemies[i][1]*90-25+90&&(x+30)>enemies[i][1]*90-25&&(y)>enemies[i][0]&&(y)<enemies[i][0]+35) velx+=-10;
-            if(enemies[i][0]>500) enemies[i][0]=-50 ;
+            YAFGenemies[i][0]+=YAFGenemies[i][2];
+            C2D_DrawRectSolid(YAFGenemies[i][1]*90-25, YAFGenemies[i][0],0, 90, 35, YAOL);
+            if(!hit){
+                if((YAFGx-30)<YAFGenemies[i][1]*90-25+90&&(YAFGx-30)>YAFGenemies[i][1]*90-25&&(YAFGy)>YAFGenemies[i][0]&&(YAFGy)<YAFGenemies[i][0]+35) {YAFGvelx+=10;hit=true;}
+                if((YAFGx+30)<YAFGenemies[i][1]*90-25+90&&(YAFGx+30)>YAFGenemies[i][1]*90-25&&(YAFGy)>YAFGenemies[i][0]&&(YAFGy)<YAFGenemies[i][0]+35) {YAFGvelx+=-10;hit=true;}
+                if((YAFGx)<YAFGenemies[i][1]*90-25+90&&(YAFGx)>YAFGenemies[i][1]*90-25&&(YAFGy+30)>YAFGenemies[i][0]&&(YAFGy+30)<YAFGenemies[i][0]+35) {YAFGvely+=-30;hit=true;}
+                if((YAFGx)<YAFGenemies[i][1]*90-25+90&&(YAFGx)>YAFGenemies[i][1]*90-25&&(YAFGy-30)>YAFGenemies[i][0]&&(YAFGy-30)<YAFGenemies[i][0]+35) {YAFGvely+=10;hit=true;}
+            }
+            if(YAFGenemies[i][0]>500) YAFGenemies[i][0]=-50 ;
     
         }
         C3D_FrameEnd(0);
@@ -86,14 +87,14 @@ u32 YABlue  = C2D_Color32(0xA7, 0xC7, 0xD8, 0xFF);
             YAOL);
     
     
-        C2D_DrawCircleSolid(x-40, y-240, 0, 30, 
+        C2D_DrawCircleSolid(YAFGx-40, YAFGy-240, 0, 30, 
             YAOL);
-        C2D_DrawCircleSolid(x-40, y-240, 0, 25, 
+        C2D_DrawCircleSolid(YAFGx-40, YAFGy-240, 0, 25, 
             YAGreen);
             
         for(int i = 0; i<10;i++){
     
-            C2D_DrawRectSolid(enemies[i][1]*90-25-40, enemies[i][0]-240,0, 90, 35, YAOL);
+            C2D_DrawRectSolid(YAFGenemies[i][1]*90-25-40, YAFGenemies[i][0]-240,0, 90, 35, YAOL);
     
         }
         // printf("\x1b[1;1HYAFG REMASTERED 3DS EDITION");
@@ -129,22 +130,22 @@ u32 YABlue  = C2D_Color32(0xA7, 0xC7, 0xD8, 0xFF);
         // 	y=y+10;
         // }
         // if (kDown & KEY_A){
-        //      vely=vely-20;
+        //      YAFGvely=YAFGvely-20;
         //  }
         if (kDown & KEY_A){
-            vely=vely-30;
+            YAFGvely=YAFGvely-30;
         }
         if (kDown & BIT(4)){
-            velx=velx+10;
+            YAFGvelx=YAFGvelx+10;
         }
         if (kDown & BIT(5)){
-            velx=velx-10;
+            YAFGvelx=YAFGvelx-10;
         }
-        velx*=.9;
-        vely+=2;
-        vely*=.9;
-        x+=velx;
-        y+=vely;
+        YAFGvelx*=.9;
+        YAFGvely+=2;
+        YAFGvely*=.9;
+        YAFGx+=YAFGvelx;
+        YAFGy+=YAFGvely;
 
         display();
         
