@@ -40,6 +40,8 @@ DATA		:=	data
 INCLUDES	:=	include
 GRAPHICS	:=	gfx
 GFXBUILD	:=	$(BUILD)
+APP_TITLE   :=  Yet Another Game Collection
+APP_AUTHOR  :=  loglot
 #ROMFS		:=	romfs
 #GFXBUILD	:=	$(ROMFS)/gfx
 
