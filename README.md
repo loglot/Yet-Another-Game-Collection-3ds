@@ -23,6 +23,8 @@ that's right, i'm getting into 3ds homebrew
 
         2.4. [optional] run ./build.bat to get a cia file
 
+            Note: build.bat runs 2 files, cxitool.exe, and makerom.exe, if you want, you can get these files from online, and replace the included files in 3dsx-to-cia, though, that is not required
+
 3. open the game
 
     3.1. on a 3ds, you should put the .3dsx file onto the sd card, and open it with homebrew launcher
