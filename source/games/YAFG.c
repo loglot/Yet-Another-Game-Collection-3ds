@@ -166,6 +166,7 @@ u32 YABlue  = C2D_Color32(0xA7, 0xC7, 0xD8, 0xFF);
 init();
 while (aptMainLoop())
 {
+    hidScanInput();
     u32 kDown = hidKeysDown();
     if (kDown & KEY_START)
         break;
