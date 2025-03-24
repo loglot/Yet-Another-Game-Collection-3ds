@@ -89,13 +89,14 @@ u32 YABlue  = C2D_Color32(0xA7, 0xC7, 0xD8, 0xFF);
 		u32 kDown = hidKeysDown();
 		if (kDown & KEY_A) 
 			YAFG();
-		if (touch.px>50&&touch.py>130)
+		if (touch.px>50&&touch.py>130&&touch.px<50+220&&touch.py<130+60)
 			YAFG();
 		draw();
 		time++;
 	}
 while (aptMainLoop())
 {
+    	hidScanInput();			
 		u32 kDown = hidKeysDown();
 		if (kDown & KEY_START)
 			break;
