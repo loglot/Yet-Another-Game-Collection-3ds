@@ -24,6 +24,8 @@ u32 YABlue  = C2D_Color32(0xA7, 0xC7, 0xD8, 0xFF);
     float y=30;
     float velx=0;
     float vely=0;
+    int state = 0;
+    bool CBMLastFrame = false;
 
     srand(123576);
     float enemies[10][3]={
@@ -39,37 +41,51 @@ u32 YABlue  = C2D_Color32(0xA7, 0xC7, 0xD8, 0xFF);
         {-rand()%600,rand()%5,.5+(rand()%20)/5}};
     
     
-    void drawTop(){
-        C3D_FrameBegin(C3D_FRAME_SYNCDRAW);
-        C2D_SceneBegin(top);
-        C2D_TargetClear(top, YABlue);
-    
-        C2D_DrawRectSolid(195, 0,0, 10, 240, YAOL);
-        C2D_DrawRectSolid(105, 0,0, 10, 240, YAOL);
-        C2D_DrawRectSolid(285, 0,0, 10, 240, YAOL);
-        C2D_DrawRectSolid(15, 0,0, 10, 240, YAOL);
-        C2D_DrawRectSolid(375, 0,0, 10, 240, YAOL);
-    
-        C2D_DrawCircleSolid(x, y, 0, 30, YAOL);
-        C2D_DrawCircleSolid(x, y, 0, 25, YAGreen);
-
-        bool hit = false;
-        for(int i = 0; i<10;i++){
-            
-            enemies[i][0]+=enemies[i][2];
-            C2D_DrawRectSolid(enemies[i][1]*90-25, enemies[i][0],0, 90, 35, YAOL);
-            if(!hit){
-                if((x-30)<enemies[i][1]*90-25+90&&(x-30)>enemies[i][1]*90-25&&(y)>enemies[i][0]&&(y)<enemies[i][0]+35&&target<targetRange[1]) {velx+=10;hit=true;target++;}
-                if((x+30)<enemies[i][1]*90-25+90&&(x+30)>enemies[i][1]*90-25&&(y)>enemies[i][0]&&(y)<enemies[i][0]+35&&target>targetRange[0]) {velx+=-10;hit=true;target--;}
-                if((x)<enemies[i][1]*90-25+90&&(x)>enemies[i][1]*90-25&&(y+30)>enemies[i][0]&&(y+30)<enemies[i][0]+35) {vely=-30;hit=true;}
-                if((x)<enemies[i][1]*90-25+90&&(x)>enemies[i][1]*90-25&&(y-30)>enemies[i][0]&&(y-30)<enemies[i][0]+35) {vely=10;hit=true;}
-            }
-            if(enemies[i][0]>600) enemies[i][0]=-50 ;
-    
-        }
-        C3D_FrameEnd(0);
+        void drawTop(){
+            C3D_FrameBegin(C3D_FRAME_SYNCDRAW);
+            C2D_SceneBegin(top);
+            C2D_TargetClear(top, YABlue);
         
-    }
+            C2D_DrawRectSolid(195, 0,0, 10, 240, YAOL);
+            C2D_DrawRectSolid(105, 0,0, 10, 240, YAOL);
+            C2D_DrawRectSolid(285, 0,0, 10, 240, YAOL);
+            C2D_DrawRectSolid(15, 0,0, 10, 240, YAOL);
+            C2D_DrawRectSolid(375, 0,0, 10, 240, YAOL);
+        
+            C2D_DrawCircleSolid(x, y, 0, 30, YAOL);
+            C2D_DrawCircleSolid(x, y, 0, 25, YAGreen);
+    
+            bool hit = false;
+            for(int i = 0; i<10;i++){
+                
+                enemies[i][0]+=enemies[i][2];
+                C2D_DrawRectSolid(enemies[i][1]*90-25, enemies[i][0],0, 90, 35, YAOL);
+                if(!hit){
+                    if((x-30)<enemies[i][1]*90-25+90&&(x-30)>enemies[i][1]*90-25&&(y)>enemies[i][0]&&(y)<enemies[i][0]+35&&target<targetRange[1]) {velx+=10;hit=true;target++;}
+                    if((x+30)<enemies[i][1]*90-25+90&&(x+30)>enemies[i][1]*90-25&&(y)>enemies[i][0]&&(y)<enemies[i][0]+35&&target>targetRange[0]) {velx+=-10;hit=true;target--;}
+                    if((x)<enemies[i][1]*90-25+90&&(x)>enemies[i][1]*90-25&&(y+30)>enemies[i][0]&&(y+30)<enemies[i][0]+35) {vely=-30;hit=true;}
+                    if((x)<enemies[i][1]*90-25+90&&(x)>enemies[i][1]*90-25&&(y-30)>enemies[i][0]&&(y-30)<enemies[i][0]+35) {vely=10;hit=true;}
+                }
+                if(enemies[i][0]>600) enemies[i][0]=-50 ;
+        
+            }
+            C3D_FrameEnd(0);
+            
+        }
+        void drawTopMenu(){
+            C3D_FrameBegin(C3D_FRAME_SYNCDRAW);
+            C2D_SceneBegin(top);
+            C2D_TargetClear(top, YABlue);
+            C2D_DrawRectSolid(195, 0,0, 10, 240, YAOL);
+            C2D_DrawRectSolid(105, 0,0, 10, 240, YAOL);
+            C2D_DrawRectSolid(285, 0,0, 10, 240, YAOL);
+            C2D_DrawRectSolid(15, 0,0, 10, 240, YAOL);
+            C2D_DrawRectSolid(375, 0,0, 10, 240, YAOL);
+        
+            YACTRText("Yet Another Flappy Game",50,50,.6f);
+            C3D_FrameEnd(0);
+            
+        }
     void drawBottom(){
         int offset[2]={-40,-320};
         C3D_FrameBegin(C3D_FRAME_SYNCDRAW);
@@ -98,42 +114,43 @@ u32 YABlue  = C2D_Color32(0xA7, 0xC7, 0xD8, 0xFF);
         drawBottom();
     }
     void init(){
-        
+        x=200;
+        y=30;
+        target=2;
+        enemies[0][0]=300;
     }
 
     void tick(){
 
-        hidScanInput();
+        // hidScanInput();
+		circlePosition pos;
+		hidCircleRead(&pos);
 
         // Respond to user input
         u32 kDown = hidKeysDown();
         
-        // u32 kHeld = hidKeysHeld();
-        // if (kHeld & KEY_A){
-        // 	x=x+10;
-        // }
-        // if (kHeld & KEY_Y){
-        // 	x=x-10;
-        // }
-        // if (kHeld & KEY_X){
-        // 	y=y-10;
-        // }
-        // if (kHeld & KEY_B){
-        // 	y=y+10;
-        // }
-        // if (kDown & KEY_A){
-        //      vely=vely-20;
-        //  }
         if (kDown & KEY_A){
             vely=vely-30;
         }
-        if (kDown & BIT(4)&&target<targetRange[1]){
-            velx=velx+10;
-            target++;
+        if ((kDown & BIT(4)||(pos.dx>.8f))&&target<targetRange[1]){
+            if(!CBMLastFrame){
+
+                velx=velx+10;
+                target++;
+                CBMLastFrame=true;
+            }
+        } else{
+            CBMLastFrame=false;
         }
-        if (kDown & BIT(5)&&target>targetRange[0]){
-            velx=velx-10;
-            target--;
+        if ((kDown & BIT(5)||(pos.dx<.2f))&&target>targetRange[0]){
+            if(!CBMLastFrame){
+
+                velx=velx+10;
+                target++;
+                CBMLastFrame=true;
+            }
+        } else{
+            CBMLastFrame=false;
         }
         if(y>250){
             targetRange[0] = 1;
@@ -158,6 +175,10 @@ u32 YABlue  = C2D_Color32(0xA7, 0xC7, 0xD8, 0xFF);
         vely*=.9;
         x+=velx;
         y+=vely;
+        if(y>=500){
+            state=0;
+            
+        }
 
         display();
         
@@ -168,9 +189,21 @@ while (aptMainLoop())
 {
     hidScanInput();
     u32 kDown = hidKeysDown();
-    if (kDown & KEY_START)
-        break;
-    tick();
+    if(state==0){
+        drawTopMenu();
+        C3D_FrameBegin(C3D_FRAME_SYNCDRAW);
+        C2D_SceneBegin(bottom);
+        C2D_TargetClear(bottom, YABlue);
+        C3D_FrameEnd(0);
+        if (kDown & KEY_START)
+            break;  
+        if (kDown & KEY_B)
+            state=1;
+            init();
+    }
+    if(state==1){
+        tick();
+    }
 }
 
 // Deinit libs

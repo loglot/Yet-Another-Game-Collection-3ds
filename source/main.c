@@ -6,8 +6,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "./games/YAFG.c"
 #include "./general-utills/utillities.c"
+#include "./games/YAFG.c"
 
 #include <3ds.h>
 #include <citro2d.h>
