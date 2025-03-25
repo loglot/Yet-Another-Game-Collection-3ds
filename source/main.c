@@ -82,25 +82,21 @@ u32 YABlue  = C2D_Color32(0xA7, 0xC7, 0xD8, 0xFF);
 	}
 	void tick(){
 
-    	hidScanInput();			
+    	// hidScanInput();			
 		touchPosition touch;
 		hidTouchRead(&touch);
 
 		u32 kDown = hidKeysDown();
-		if (kDown & KEY_A) 
-			YAFG();
-		if (touch.px>50&&touch.py>130&&touch.px<50+220&&touch.py<130+60)
-			YAFG();
-		draw();
-		time++;
+		if (kDown & KEY_A||(touch.px>50&&touch.py>130&&touch.px<50+220&&touch.py<130+60)) {YAFG();}
 	}
 while (aptMainLoop())
 {
     	hidScanInput();			
 		u32 kDown = hidKeysDown();
 		if (kDown & KEY_START)
-			break;
-    tick();
+            break;
+        tick();
+		draw();
 	// printf("\x1b[1;1HPress A to Start YAFG  ");
 	// printf("\x1b[2;1HCPU:     %6.2f%%\x1b[K", C3D_GetProcessingTime()*6.0f);
 }
