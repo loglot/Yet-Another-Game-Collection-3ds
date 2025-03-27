@@ -1,9 +1,9 @@
 
 // #include <citro2d.h>
 
-#include <string.h>
-#include <stdio.h>
-#include <stdlib.h>
+// #include <string.h>
+// #include <stdio.h>
+// #include <stdlib.h>
 #include <stdbool.h>
 #include <time.h>
 srand(time(NULL));
@@ -16,12 +16,12 @@ int YAFG() {
 // C3D_Init(C3D_DEFAULT_CMDBUF_SIZE);
 // C2D_Init(C2D_DEFAULT_MAX_OBJECTS);
 // C2D_Prepare();
-C3D_RenderTarget* top = C2D_CreateScreenTarget(GFX_TOP, GFX_LEFT);
-C3D_RenderTarget* bottom = C2D_CreateScreenTarget(GFX_BOTTOM, GFX_LEFT);
-u32 YAGreen   = C2D_Color32(0xAF, 0xBF, 0xAF, 0xFF);
-u32 YAOL   = C2D_Color32(0x33, 0x36, 0x3F, 0xFF);
-u32 YAShadow   = C2D_Color32(0x33, 0x36, 0x3F, 0x5F);
-u32 YABlue  = C2D_Color32(0xA7, 0xC7, 0xD8, 0xFF);
+// C3D_RenderTarget* top = C2D_CreateScreenTarget(GFX_TOP, GFX_LEFT);
+// C3D_RenderTarget* bottom = C2D_CreateScreenTarget(GFX_BOTTOM, GFX_LEFT);
+// u32 YAGreen   = C2D_Color32(0xAF, 0xBF, 0xAF, 0xFF);
+// u32 YAOL   = C2D_Color32(0x33, 0x36, 0x3F, 0xFF);
+// u32 YAShadow   = C2D_Color32(0x33, 0x36, 0x3F, 0x5F);
+// u32 YABlue  = C2D_Color32(0xA7, 0xC7, 0xD8, 0xFF);
 u32 YAUIBlue  = C2D_Color32(0x97, 0xB7, 0xC8, 0xAF);
     float x=200;
     int target = 2;

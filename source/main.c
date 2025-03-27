@@ -110,6 +110,7 @@ float scale=0;
 			if(animation>40){
 				YAFG();
 				animation=-1;
+				targetScale = .8;
 			}
 		}
 	}
