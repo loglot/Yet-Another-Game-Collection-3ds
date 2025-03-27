@@ -4,6 +4,7 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 // #include <3ds.h>
 //---------------------------------------------------------------------------------
@@ -194,10 +195,12 @@ u32 YAUIBlue  = C2D_Color32(0x97, 0xB7, 0xC8, 0xAF);
         vely*=.9;
         x+=velx;
         y+=vely;
-        if(y>=500){
+        if(y>=600){
             state=0;
             
         }
+        if (kDown & KEY_START)
+            state=0;
 
         if(y<30){
             y=30;
@@ -208,13 +211,13 @@ u32 YAUIBlue  = C2D_Color32(0x97, 0xB7, 0xC8, 0xAF);
     }
 
 init();
-while (aptMainLoop())
+while (true)
 {
     hidScanInput();
     u32 kDown = hidKeysDown();
-    if (kDown & KEY_START)
-        break;  
     if(state==0){
+        if (kDown & KEY_START)
+            return 0;  
         menuY=((menuY*7))/8;
         drawMenu();
         if (kDown & KEY_A)

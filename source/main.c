@@ -5,12 +5,10 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
-
-#include "./general-utills/utillities.c"
-#include "./games/YAFG.c"
-
 #include <3ds.h>
 #include <citro2d.h>
+
+
 
 
 #define SCREEN_WIDTH  400
@@ -30,6 +28,13 @@ C3D_RenderTarget* bottom = C2D_CreateScreenTarget(GFX_BOTTOM, GFX_LEFT);
 u32 YAGreen   = C2D_Color32(0xAF, 0xBF, 0xAF, 0xFF);
 u32 UI  = C2D_Color32(0x00, 0x00, 0x00, 0x5F);
 u32 YABlue  = C2D_Color32(0xA7, 0xC7, 0xD8, 0xFF);
+u32 YAOL   = C2D_Color32(0x33, 0x36, 0x3F, 0xFF);
+u32 YAShadow   = C2D_Color32(0x33, 0x36, 0x3F, 0x5F);
+
+#include "./general-utills/utillities.c"
+#include "./games/YAFG.c"
+#include "./games/previews.c"
+
 // C2D_Text Text[2];
 // C2D_Font font;
 // C2D_TextBuf g_staticBuf;
@@ -74,6 +79,10 @@ u32 YABlue  = C2D_Color32(0xA7, 0xC7, 0xD8, 0xFF);
         C3D_FrameBegin(C3D_FRAME_SYNCDRAW);
         C2D_SceneBegin(top);
         C2D_TargetClear(top, YABlue);
+        C2D_DrawRectSolid(0, 0, 0, 400, 240, UI);
+		YAFGPreview();
+		scaleX= (scaleX*10+.8)/11;
+		scaleY= (scaleY*10+.8)/11;
         C3D_FrameEnd(0);
 	}
 	void draw(){
@@ -88,6 +97,10 @@ u32 YABlue  = C2D_Color32(0xA7, 0xC7, 0xD8, 0xFF);
 
 		u32 kDown = hidKeysDown();
 		if (kDown & KEY_A||(touch.px>50&&touch.py>130&&touch.px<50+220&&touch.py<130+60)) {YAFG();}
+        C3D_FrameBegin(C3D_FRAME_SYNCDRAW);
+        C2D_SceneBegin(top);
+        if (kDown & KEY_B)  {C2D_TargetClear(top, YABlue);}
+        C3D_FrameEnd(0);
 	}
 while (aptMainLoop())
 {
@@ -95,8 +108,8 @@ while (aptMainLoop())
 		u32 kDown = hidKeysDown();
 		if (kDown & KEY_START)
             break;
-        tick();
 		draw();
+        tick();
 	// printf("\x1b[1;1HPress A to Start YAFG  ");
 	// printf("\x1b[2;1HCPU:     %6.2f%%\x1b[K", C3D_GetProcessingTime()*6.0f);
 }

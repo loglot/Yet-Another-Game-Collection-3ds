@@ -35,9 +35,6 @@ that's right, i'm getting into 3ds homebrew
 cannot exit game for some reason, will try to figure out at somepoint, to leave the game, you can fully restart your 3ds
 
 ## planned features
-i plan to make multiple of my games in this, not just 1,
-
-there is a .cia version planned, i just have to learn how to do that, and that will be in the first stable release
 
 [Yet Another Collectathon] : not yet
 
