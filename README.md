@@ -32,7 +32,7 @@ that's right, i'm getting into 3ds homebrew
     3.2. on an emulator, you can just open the file like any other game
 
 # KNOWN ISSUES:
-cannot exit game for some reason, will try to figure out at somepoint, to leave the game, you can fully restart your 3ds
+-- fixed in next release-- cannot exit game for some reason, will try to figure out at somepoint, to leave the game, you can fully restart your 3ds
 
 ## planned features
 

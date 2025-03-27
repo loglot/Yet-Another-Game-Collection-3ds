@@ -5,6 +5,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <time.h>
+srand(time(NULL));
 
 // #include <3ds.h>
 //---------------------------------------------------------------------------------
@@ -30,20 +32,19 @@ u32 YAUIBlue  = C2D_Color32(0x97, 0xB7, 0xC8, 0xAF);
     int state = 0;
     bool CBMLastFrameq = false;
     bool CBMLastFramew = false;
-    float menuY=0;
+    float menuY=-200;
 
-    srand(123576);
     float enemies[10][3]={
         {200,2,.5},
-        {-rand()%600,rand()%5,.5+(rand()%20)/5},
-        {-rand()%600,rand()%5,.5+(rand()%20)/5},
-        {-rand()%600,rand()%5,.5+(rand()%20)/5},
-        {-rand()%600,rand()%5,.5+(rand()%20)/5},
-        {-rand()%600,rand()%5,.5+(rand()%20)/5},
-        {-rand()%600,rand()%5,.5+(rand()%20)/5},
-        {-rand()%600,rand()%5,.5+(rand()%20)/5},
-        {-rand()%600,rand()%5,.5+(rand()%20)/5},
-        {-rand()%600,rand()%5,.5+(rand()%20)/5}};
+        {0,0,0},
+        {0,0,0},
+        {0,0,0},
+        {0,0,0},
+        {0,0,0},
+        {0,0,0},
+        {0,0,0},
+        {0,0,0},
+        {0,0,0}};
     
     
         void Top(){
@@ -124,6 +125,12 @@ u32 YAUIBlue  = C2D_Color32(0x97, 0xB7, 0xC8, 0xAF);
         y=100;
         target=2;
         enemies[0][0]=200;
+            for(int i = 1; i<10;i++){
+                enemies[i][0]=-rand()%600;
+                enemies[i][1]=rand()%5;
+                enemies[i][2]=.5+(rand()%20)/5;
+
+            }
     }
 
     void tick(){

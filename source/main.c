@@ -30,6 +30,9 @@ u32 UI  = C2D_Color32(0x00, 0x00, 0x00, 0x5F);
 u32 YABlue  = C2D_Color32(0xA7, 0xC7, 0xD8, 0xFF);
 u32 YAOL   = C2D_Color32(0x33, 0x36, 0x3F, 0xFF);
 u32 YAShadow   = C2D_Color32(0x33, 0x36, 0x3F, 0x5F);
+float targetScale=.8;
+int animation=-1;
+float scale=0;
 
 #include "./general-utills/utillities.c"
 #include "./games/YAFG.c"
@@ -39,11 +42,6 @@ u32 YAShadow   = C2D_Color32(0x33, 0x36, 0x3F, 0x5F);
 // C2D_Font font;
 // C2D_TextBuf g_staticBuf;
  
-	void textinit(){\
-		YACTRText("PLAY!",120, 145,1);
-		YACTRText("YET ANOTHER FLAPPY GAME",40, 55,.65f);
-
-	}
 	// Main loop
 	
 	// consoleInit(GFX_BOTTOM, NULL);
@@ -69,9 +67,11 @@ u32 YAShadow   = C2D_Color32(0x33, 0x36, 0x3F, 0x5F);
         C3D_FrameBegin(C3D_FRAME_SYNCDRAW);
         C2D_SceneBegin(bottom);
         C2D_TargetClear(bottom, YABlue);
-        C2D_DrawRectSolid(30, 30, 0, 260, 180, UI);
-        C2D_DrawRectSolid(50, 130, 0, 220, 60, YAGreen);
-		textinit();
+        C2D_DrawRectSolid(30, 30+((scale-.8)*5)*300, 0, 260, 180, UI);
+        C2D_DrawRectSolid(50, 130+((scale-.8)*5)*300, 0, 220, 60, YAGreen);
+		YACTRText("PLAY!",120, 145+((scale-.8)*5)*300,1);
+		YACTRText("YET ANOTHER FLAPPY GAME",40, 55+((scale-.8)*5)*300,.65f);
+		YAFGPreviewBottom();
         C3D_FrameEnd(0);
 	}
     void drawTop(){
@@ -80,9 +80,12 @@ u32 YAShadow   = C2D_Color32(0x33, 0x36, 0x3F, 0x5F);
         C2D_SceneBegin(top);
         C2D_TargetClear(top, YABlue);
         C2D_DrawRectSolid(0, 0, 0, 400, 240, UI);
-		YAFGPreview();
-		scaleX= (scaleX*10+.8)/11;
-		scaleY= (scaleY*10+.8)/11;
+		scaleX=scale;
+		scaleY=scale;
+		YAFGPreviewTop();
+		scaleX=1;
+		scaleY=1;
+		scale= (scale*10+targetScale)/11;
         C3D_FrameEnd(0);
 	}
 	void draw(){
@@ -96,11 +99,19 @@ u32 YAShadow   = C2D_Color32(0x33, 0x36, 0x3F, 0x5F);
 		hidTouchRead(&touch);
 
 		u32 kDown = hidKeysDown();
-		if (kDown & KEY_A||(touch.px>50&&touch.py>130&&touch.px<50+220&&touch.py<130+60)) {YAFG();}
+		if (kDown & KEY_A||(touch.px>50&&touch.py>130&&touch.px<50+220&&touch.py<130+60)) {animation=0;}
         C3D_FrameBegin(C3D_FRAME_SYNCDRAW);
         C2D_SceneBegin(top);
         if (kDown & KEY_B)  {C2D_TargetClear(top, YABlue);}
         C3D_FrameEnd(0);
+		if(animation>=0){
+			animation++;
+			targetScale = 1;
+			if(animation>40){
+				YAFG();
+				animation=-1;
+			}
+		}
 	}
 while (aptMainLoop())
 {

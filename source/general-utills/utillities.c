@@ -8,8 +8,8 @@
 C2D_Text Text;
 C2D_Font font;
 C2D_TextBuf g_staticBuf;
-float scaleX = 0;
-float scaleY = 0;
+float scaleX = 1;
+float scaleY = 1;
 
 void YACTRText(char input[100], float x, float y, float size){
 
