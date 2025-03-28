@@ -126,7 +126,7 @@ u32 YAUIBlue  = C2D_Color32(0x97, 0xB7, 0xC8, 0xAF);
         target=2;
         enemies[0][0]=200;
             for(int i = 1; i<10;i++){
-                enemies[i][0]=-rand()%600;
+                enemies[i][0]=(-rand()%500)-100;
                 enemies[i][1]=rand()%5;
                 enemies[i][2]=.5+(rand()%20)/5;
 
@@ -202,18 +202,18 @@ u32 YAUIBlue  = C2D_Color32(0x97, 0xB7, 0xC8, 0xAF);
         vely*=.9;
         x+=velx;
         y+=vely;
-        if(y>=600){
+        if(y>=600||(kDown & KEY_START)){
             state=0;
+            init();
             
         }
-        if (kDown & KEY_START)
-            state=0;
 
         if(y<30){
             y=30;
             vely=0;
         }
         drawMenu();
+
         
     }
 
@@ -223,18 +223,31 @@ while (true)
     hidScanInput();
     u32 kDown = hidKeysDown();
     if(state==0){
-        if (kDown & KEY_START)
-            return 0;  
+        if (kDown & KEY_START){animation=0;}
+            // return 0;  
+
         menuY=((menuY*7))/8;
         drawMenu();
         if (kDown & KEY_A)
             state=1;
-            init();
+
+		if(animation>=0){
+			animation++;
+            menuY=((menuY*7)-200);
+			if(animation>30){
+                state=4;
+                animation=-1;
+			}
+		}
     } else
     if(state==1){
         tick();
+
         menuY=((menuY*7)-70)/8;
     }
+    if(state==4)return 0;
+
+
 }
 
 // Deinit libs

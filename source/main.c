@@ -36,7 +36,7 @@ float scale=0;
 
 #include "./general-utills/utillities.c"
 #include "./games/YAFG.c"
-#include "./games/previews.c"
+#include "./general-utills/previews.c"
 
 // C2D_Text Text[2];
 // C2D_Font font;
@@ -108,8 +108,8 @@ float scale=0;
 			animation++;
 			targetScale = 1;
 			if(animation>40){
-				YAFG();
 				animation=-1;
+				YAFG();
 				targetScale = .8;
 			}
 		}
