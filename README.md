@@ -38,7 +38,7 @@ that's right, i'm getting into 3ds homebrew
 
 [Yet Another Collectathon] : not yet
 
-[Yet Another Flappy Game] : in development
+[Yet Another Flappy Game] : complete, may get a few patches later
 
 [Yet Another Bouncer] : not yet
 

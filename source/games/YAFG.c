@@ -69,6 +69,25 @@ u32 YAUIBlue  = C2D_Color32(0x97, 0xB7, 0xC8, 0xAF);
             }
             
         }
+        void Bottom(){
+            int offset[2]={-40,-320};
+        
+            C2D_DrawRectSolid(195+offset[0], 0,0, 10, 240, YAOL);
+            C2D_DrawRectSolid(105+offset[0], 0,0, 10, 240, YAOL);
+            C2D_DrawRectSolid(285+offset[0], 0,0, 10, 240, YAOL);
+        
+        
+            C2D_DrawCircleSolid(x-5+offset[0], y+5+offset[1], 0, 30, YAShadow);
+            C2D_DrawCircleSolid(x+offset[0], y+offset[1], 0, 30, YAOL);
+            C2D_DrawCircleSolid(x+offset[0], y+offset[1], 0, 25, YAGreen);
+                
+            for(int i = 0; i<10;i++){
+        
+                C2D_DrawRectSolid(enemies[i][1]*90-25+offset[0], enemies[i][0]+offset[1],0, 90, 35, YAOL);
+        
+            }
+            
+        }
         void drawTop(){
             C3D_FrameBegin(C3D_FRAME_SYNCDRAW);
             C2D_SceneBegin(top);
@@ -77,49 +96,50 @@ u32 YAUIBlue  = C2D_Color32(0x97, 0xB7, 0xC8, 0xAF);
             C3D_FrameEnd(0);
             
         }
-    void drawBottom(){
-        int offset[2]={-40,-320};
-        C3D_FrameBegin(C3D_FRAME_SYNCDRAW);
-        C2D_SceneBegin(bottom);
-        C2D_TargetClear(bottom, YABlue);
-    
-        C2D_DrawRectSolid(195+offset[0], 0,0, 10, 240, YAOL);
-        C2D_DrawRectSolid(105+offset[0], 0,0, 10, 240, YAOL);
-        C2D_DrawRectSolid(285+offset[0], 0,0, 10, 240, YAOL);
-    
-    
-        C2D_DrawCircleSolid(x-5+offset[0], y+5+offset[1], 0, 30, YAShadow);
-        C2D_DrawCircleSolid(x+offset[0], y+offset[1], 0, 30, YAOL);
-        C2D_DrawCircleSolid(x+offset[0], y+offset[1], 0, 25, YAGreen);
+        void drawBottom(){
+            C3D_FrameBegin(C3D_FRAME_SYNCDRAW);
+            C2D_SceneBegin(bottom);
+            C2D_TargetClear(bottom, YABlue);
+            Bottom();
+            C3D_FrameEnd(0);
             
-        for(int i = 0; i<10;i++){
-    
-            C2D_DrawRectSolid(enemies[i][1]*90-25+offset[0], enemies[i][0]+offset[1],0, 90, 35, YAOL);
-    
         }
-        // printf("\x1b[1;1HYAFG REMASTERED 3DS EDITION");
-        C3D_FrameEnd(0);
-        
-    }
     void display(){
         drawTop();
         drawBottom();
     }
         void drawMenu(){
             // display();
-            drawBottom();
+            // drawBottom();
             C3D_FrameBegin(C3D_FRAME_SYNCDRAW);
             C2D_SceneBegin(top);
             Top();
-            int tabpos[3]={40,200,50};
-            C2D_DrawRectSolid(tabpos[0]-7, 0+menuY,0, tabpos[1]+14, tabpos[2]+7, YAOL);
-            C2D_DrawRectSolid(tabpos[0], 0+menuY,0, tabpos[1], tabpos[2], YABlue);
+            C2D_DrawRectSolid(40-7, 0+menuY,0, 200+14, 50+7, YAOL);
+            C2D_DrawRectSolid(40, 0+menuY,0, 200, 50, YABlue);
             C2D_DrawRectSolid(0, 0+menuY,0, 500, 70, YAUIBlue);
-        
             YACTRText("Yet Another Flappy Game",50,20+menuY,.6f);
+            
+            int tabpos[3]={40,200,50};
+            C3D_FrameEnd(0);
+            C3D_FrameBegin(C3D_FRAME_SYNCDRAW);
+            C2D_SceneBegin(bottom);
+            C2D_TargetClear(bottom, YABlue);
+            Bottom();
+            C2D_DrawRectSolid(40-7, 190-7-menuY,0, 100+14, 50+7, YAOL);
+            C2D_DrawRectSolid(40, 190-menuY,0, 100, 50, YABlue);
+
+            C2D_DrawRectSolid(160-7, 190-7-menuY,0, 120+14, 50+7, YAOL);
+            C2D_DrawRectSolid(160, 190-menuY,0, 120, 50, YABlue);
+
+            C2D_DrawRectSolid(0, 170-menuY,0, 500, 70, YAUIBlue);
+            YACTRText("HOME (start)",170,200-menuY,.6f);
+
+            YACTRText("START (A)",50,200-menuY,.6f);
+            
             C3D_FrameEnd(0);
             
         }
+        
     void init(){
         x=200;
         y=100;
@@ -233,7 +253,7 @@ while (true)
 
 		if(animation>=0){
 			animation++;
-            menuY=((menuY*7)-200);
+            menuY=((menuY*7)-200)/8;
 			if(animation>30){
                 state=4;
                 animation=-1;
